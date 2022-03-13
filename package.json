@@ -1,17 +1,32 @@
 {
   "name": "linux-test",
   "version": "1.0.0",
-  "description": "",
+  "description": "Express Linux App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/server.js",
+    "build:mac": "npx pkg src/app.js -c package.json -t node14-macos-x64",
+    "build:linux": "npx pkg src/app.js -c package.json -t node14-linux-arm64"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.3",
-    "node-linux": "^0.1.12",
-    "pkg": "^5.5.2"
+    "express": "4.17.3",
+    "node-linux": "0.1.12",
+    "pkg": "5.5.2"
+  },
+  "pkg": {
+    "assets": [
+      "src/**/*"
+    ],
+    "targets": [
+      "node14-macos-x64",
+      "node14-linux-arm64"
+    ],
+    "outputPath": "./dist"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.15"
   }
 }
